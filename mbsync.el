@@ -110,13 +110,16 @@ Accounts and Mailboxes."
                account
                (string-trim type)))))
 
+(defvar mbsync--command "mbsync")
+(defvar mbsync--args '("-V"))
+
 (defun mbsync--sync (account)
   "Sync the mailbox information for ACCOUNT using mbsync."
   (mbsync--log "mbsync syncing (%s)" account)
   (let* ((name (format " *mbsync:%s*" account))
          (proc (make-process :name name
                              :buffer name
-                             :command (list "mbsync" "-V" account)
+                             :command `(,mbsync--command ,@mbsync--args ,account)
                              :sentinel 'mbsync--sentinel)))
     (process-put proc :mbsync-account account)
     proc))
