@@ -1,0 +1,3 @@
+#+title: mbsync.el -- Synchronize e-mail using mbsync
+
+mbsync.el is a minimal Emacs package to configure and synchronize email using the [[https://isync.sourceforge.io/][mbsync]] utility.
