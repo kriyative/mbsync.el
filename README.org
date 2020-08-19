@@ -1,3 +1,20 @@
 #+title: mbsync.el -- Synchronize e-mail using mbsync
 
-mbsync.el is a minimal Emacs package to configure and synchronize email using the [[https://isync.sourceforge.io/][mbsync]] utility.
+mbsync.el is a minimal Emacs package to configure and synchronize
+email using the [[https://isync.sourceforge.io/][mbsync]] utility.
+
+* Usage
+#+BEGIN_SRC elisp
+  (use-package mbsync
+    :type github
+    :pkgname "kriyative/mbsync.el"
+    :config
+    (setq *mbsync-accounts* '("gmail"
+                              ("outlook" 600)))
+    (mbsync-sync-accounts))
+ #+END_SRC
+
+For a sample configuration as the above, mbsync.el starts up separate
+timers for each entry in =*mbsync-accounts*= which trigger on the
+specified update interval (default is 300 seconds), and calls the
+mbsync utility as an asynchronous sub-process to synchronize messages.
